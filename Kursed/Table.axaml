@@ -1,0 +1,69 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Bulkaa.Table"
+        MaxHeight="500"
+        MaxWidth="700"
+        Title="MainForm">
+    
+    <Grid >
+        <Image Source="C:\Users\clerk\OneDrive\Рабочий стол\kr\fon.jpg" Height="1600" Width="1400"/>
+        <StackPanel Orientation="Vertical">
+            <TextBlock Margin = "10 10 0 0" FontSize = "20" FontWeight="Bold" Foreground="Azure"> Таблица "Заказы"</TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center" Margin = "10 10 0 0" Foreground="Azure"> Поиск по дате: </TextBlock>
+                <TextBox Name="Search_Goods" Width="200" Margin ="65 10 0 0" TextChanged="SearchGoods"></TextBox>
+            </StackPanel> 
+            
+            <StackPanel Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center"
+                           x:Name="txtShow" Margin ="10 10 0 0" Foreground="Azure">Фильтрация по клиентам: </TextBlock>
+                <ComboBox Name="CmbGender" 
+                          x:CompileBindings="False"
+                          SelectionChanged="CmbStatus" Width="200" Margin ="22 10 0 0">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding FIO}"></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+            
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Margin="10 12 00 0">
+                        <Button Background="Azure" Name="Add" Content="Добавить" Click="AddData"></Button>
+                    </StackPanel>
+                    <StackPanel Margin="10 12 00 0">
+                        <Button Background="Azure" Name="Update" Content="Изменить" Click = "Edit"></Button>
+                    </StackPanel>
+                    <StackPanel Margin="10 12 00 0">
+                        <Button Background="Azure" Name="Delete" Content="Удалить" Click="Del" ></Button>
+                    </StackPanel>
+                    
+                </StackPanel>
+            </StackPanel> 
+            
+        <DataGrid Name="DataGrid" x:CompileBindings="False" Margin ="10 20 0 0" Height="250" Background="Azure">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Код" Binding="{Binding ID}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Код клиетна" Binding="{Binding client_id}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Код авто" Binding="{Binding avto_id}"></DataGridTextColumn>
+                
+                <DataGridTextColumn Header="Адрес куда" Binding="{Binding adres_to}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата" Binding="{Binding date}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Цена" Binding="{Binding price}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+            
+            <StackPanel Orientation="Horizontal" Margin="10 20 20 0">
+                <StackPanel Margin="100 0 00 0">
+                <Button Background="Azure" Name="Reset" Content="Сброс фильтра" Click="Reset_OnClick"></Button>
+                </StackPanel>
+            </StackPanel>
+            
+        </StackPanel>
+    </Grid>
+</Window>
